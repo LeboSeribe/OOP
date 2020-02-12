@@ -62,12 +62,18 @@ class customer:
         
         
 
-    def  withdraw(self,amount):
-        password = int(input('password'))
-        if password == '1234':
-            return withdraw()
-        else:
-            return 'no'    
+    def  withdraw(self,amount,password):
+        while True:
+            try:
+                password = int(input('password'))
+            except ValueError:
+                print('Wrong password')
+                continue
+            if password != 1234:
+                print('Try again')
+                continue
+            else:
+                break  
         # print('please input pin',password)
         if self.balance <= 0:
             return 'insufficient funds'
@@ -75,13 +81,13 @@ class customer:
             self.balance -=amount
             return self.balance
 
-    # def   deposit(self,bank_account_number,amount):
+    def   deposit(self,bank_account_number,amount):
         # pass
     
     # def transfer(self,fromBankAccountNumber,toBankAccountNumber,amount,secretPassword):
         # pass
 p3 = customer(1,1000,1234)
-print(p3.withdraw(100))
+print(p3.withdraw(100,1234))
 
 
          
