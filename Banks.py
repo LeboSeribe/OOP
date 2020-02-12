@@ -29,19 +29,7 @@ print(p1.finish_month())
     
 class Bank:
     def __init__(self,from_bank_account_number,to_bank_account_number,from_balance,to_balance):
-      
-        while True:
-            self.from_bank_account_number = str(from_bank_account_number)
-            try:
-                if len(self.from_bank_account_number) ==10 and int(self.from_bank_account_number):
-                    return self.from_bank_account_number
-                else:
-                    print('wrong')
-                    continue
-            except ValueError:
-                print('digits') 
-               
-
+        self.from_bank_account_number = from_bank_account_number
         self.to_bank_account_number = to_bank_account_number
         self.from_balance = from_balance
         self.to_balance = to_balance
@@ -62,10 +50,38 @@ class Bank:
         return [self.from_balance,self.to_balance]
     
 
-           
-
-p2 = Bank(1,2,500,1000)
+p2 = Bank(1234567891,1345678922,500,1000)
 print('The balances of the sender and reciever respectively are:',format(p2.transfer(1234567890,1000575911,200)))
-# print('The balances of the sender and reciever respectively are:'.format(print(p2.transfer(1234567890,1000575911,200))) 
+
+
+class customer:
+    def __init__(self,account_number,balance,password):
+        self.account_number = account_number
+        self.balance = balance
+        self.password = password
+        
+        
+
+    def  withdraw(self,amount):
+        password = int(input('password'))
+        if password == '1234':
+            return withdraw()
+        else:
+            return 'no'    
+        # print('please input pin',password)
+        if self.balance <= 0:
+            return 'insufficient funds'
+        else:    
+            self.balance -=amount
+            return self.balance
+
+    # def   deposit(self,bank_account_number,amount):
+        # pass
     
+    # def transfer(self,fromBankAccountNumber,toBankAccountNumber,amount,secretPassword):
+        # pass
+p3 = customer(1,1000,1234)
+print(p3.withdraw(100))
+
+
          
