@@ -62,28 +62,27 @@ class Customer:
         
     def set_password(self):
         while True:
-            self.password = False
-            print('To reset your pin, enter a new pin. If not, type No:')
+            # self.password is True
+            print('To reset your pin, enter a new pin. If not, type any letter:')
             try:
                 self.password = int(input())
             except ValueError:
                 print('Continue using the old password')    
             if self.password:
                 print('New password set')
-                return 'Continue with the transaction'
+                return 'Continue with the transaction',self.password
             else:
-                return 'Continue with the transaction'     
+                return 'Continue with the transaction',self.password     
 
     def  withdraw(self,amount,password):
         
         while True:
-            self.password = password
             try:
                 password = int(input('Enter your password for the transaction:'))
             except ValueError:
                 print('Wrong password')
                 continue
-            if password != self.balance:
+            if password != self.password:
                 print('Try again')
                 continue
             else:
@@ -103,13 +102,12 @@ class Customer:
     
     def transfer(self,fromBankAccountNumber,toBankAccountNumber,amount,password):
         while True:
-            self.password = password
             try:
                 password = int(input('Enter your password for the transaction:'))
             except ValueError:
                 print('Wrong password')
                 continue
-            if password != 1234:
+            if password != self.password:
                 print('Try again')
                 continue
             else:
