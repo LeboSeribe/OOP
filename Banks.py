@@ -54,27 +54,40 @@ p2 = Bank(1234567891,1345678922,500,1000)
 print('The balances of the sender and reciever respectively are:',format(p2.transfer(1234567890,1000575911,200)))
 
 
-class customer:
+class Customer:
     def __init__(self,account_number,balance,password):
         self.account_number = account_number
         self.balance = balance
         self.password = password
         
-        
+    def set_password(self):
+        while True:
+            self.password = False
+            print('To reset your pin, enter a new pin. If not, type No:')
+            try:
+                self.password = int(input())
+            except ValueError:
+                print('Continue using the old password')    
+            if self.password:
+                print('New password set')
+                return 'Continue with the transaction'
+            else:
+                return 'Continue with the transaction'     
 
     def  withdraw(self,amount,password):
+        
         while True:
+            self.password = password
             try:
-                password = int(input('password'))
+                password = int(input('Enter your password for the transaction:'))
             except ValueError:
                 print('Wrong password')
                 continue
-            if password != 1234:
+            if password != self.balance:
                 print('Try again')
                 continue
             else:
                 break  
-        # print('please input pin',password)
         if self.balance <= 0:
             return 'insufficient funds'
         else:    
@@ -82,12 +95,34 @@ class customer:
             return self.balance
 
     def   deposit(self,bank_account_number,amount):
-        # pass
+        
+        self.balance += amount
+        return self.balance
+
+        
     
-    # def transfer(self,fromBankAccountNumber,toBankAccountNumber,amount,secretPassword):
-        # pass
-p3 = customer(1,1000,1234)
+    def transfer(self,fromBankAccountNumber,toBankAccountNumber,amount,password):
+        while True:
+            self.password = password
+            try:
+                password = int(input('Enter your password for the transaction:'))
+            except ValueError:
+                print('Wrong password')
+                continue
+            if password != 1234:
+                print('Try again')
+                continue
+            else:
+                break 
+        self.balance -=amount
+        return self.balance
+        
+p3 = Customer(1,1000,1234)
+
+print(p3.set_password())
 print(p3.withdraw(100,1234))
+print(p3.transfer(1,2,200,1234))
+print(p3.deposit(1,500))
 
 
          
